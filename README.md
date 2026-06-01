@@ -1,6 +1,7 @@
 # Claude Code Windows Desktop Notifications
+这只是我使用cc过程中为了不一直盯着终端看，从而腾出注意力去做别的事情，给自己做的一个小工具
 
-> 🔔 一行命令，让 Claude Code 在 Windows 上弹出右下角气泡通知——权限请求、任务完成，配上风铃与凯旋音效，不再错过任何交互。
+> 🔔 一行命令，让 Claude Code 在 Windows 上弹出右下角气泡通知——权限请求、任务完成，配上音效，不再错过任何交互。
 
 ## 一键安装
 
