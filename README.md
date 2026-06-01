@@ -8,7 +8,7 @@
 在 PowerShell 中运行：
 
 ```powershell
-irm https://raw.githubusercontent.com/im-DQM/windows-desktop-notifications/main/install.ps1 | iex
+irm https://raw.githubusercontent.com/im-DQM/windows-desktop-notifications/master/install.ps1 | iex
 ```
 
 安装后，在 Claude Code 中输入 `/hooks` 或重启即可生效。
