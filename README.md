@@ -24,15 +24,17 @@ irm https://raw.githubusercontent.com/im-DQM/windows-desktop-notifications/maste
 
 ## 自定义音效
 
-**最简单的方式：直接告诉 Claude。** 比如：
+**无需手动配置。** 安装后 Claude 会主动问你：
 
-> "我想用自己的音频文件，在 D:\my-sounds 文件夹里"
+> "你想用哪种通知音效？"
+> 1. 默认系统音效
+> 2. 自定义音效文件夹
 
-Claude 会自动帮你配置好，无需手动编辑任何文件。
+你只需要告诉它路径就行，Claude 自动帮你配置好 `~/.claude/notify-config.json`。
 
 ---
 
-如果你想自己控制，也可以直接编辑 `~/.claude/notify-config.json`：
+如果想提前手动配置，直接编辑 `~/.claude/notify-config.json`：
 
 ```json
 { "soundDir": "D:\\my-sounds" }
