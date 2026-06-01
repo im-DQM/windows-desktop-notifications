@@ -21,7 +21,7 @@ Copy the bundled `notify.ps1` to `C:\Users\<USER>\.claude\notify.ps1`.
 |-----------|---------|---------|
 | `-Title` | "Claude Code" | Balloon title |
 | `-Message` | "Notification" | Balloon body |
-| `-SoundFile` | `""` (no sound) | Custom `.wav` filename from `C:\Windows\Media\` |
+| `-SoundFile` | `""` (no sound) | `.wav` filename (looked up in configured `soundDir`) or full path |
 | `-Silent` | off | Suppress custom sound |
 
 ### 2. Add Hooks to `settings.json`
@@ -54,6 +54,24 @@ Merge these hooks into the user's **global** `~/.claude/settings.json` (preserve
 ```
 
 Replace `<USER>` with the actual Windows username. Merge with existing hooks — never overwrite.
+
+## First-Run Sound Configuration (MANDATORY)
+
+**Every time this skill is invoked, you MUST first check `C:\Users\<USER>\.claude\notify-config.json`.**
+
+If the file does not exist or `soundDir` is `C:\Windows\Media\` (the default), **immediately ask the user** before doing anything else:
+
+> "你想用哪种通知音效？"
+> 1. 默认系统音效（C:\Windows\Media\ 里的 chimes.wav / tada.wav）
+> 2. 自定义音效文件夹（告诉我你的 .wav 文件在哪个目录）
+
+Do NOT proceed with any other notification-related task until the user answers this question.
+
+- If the user picks option 1: ensure `notify-config.json` has `"soundDir": "C:\\Windows\\Media\\"`.
+- If the user picks option 2: update the `soundDir` field in `notify-config.json` to the path they provide.
+- If `notify-config.json` already has a custom path (not `C:\Windows\Media\`): no need to ask, use it as-is.
+
+`notify.ps1` reads this config at runtime, so changes take effect immediately.
 
 ## Customizing Sounds
 

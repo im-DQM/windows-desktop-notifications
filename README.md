@@ -24,7 +24,25 @@ irm https://raw.githubusercontent.com/im-DQM/windows-desktop-notifications/maste
 
 ## 自定义音效
 
-编辑 `~/.claude/settings.json`，找到 hook 命令里的 `-SoundFile` 参数，换成 `C:\Windows\Media\` 下任意 `.wav` 文件：
+**最简单的方式：直接告诉 Claude。** 比如：
+
+> "我想用自己的音频文件，在 D:\my-sounds 文件夹里"
+
+Claude 会自动帮你配置好，无需手动编辑任何文件。
+
+---
+
+如果你想自己控制，也可以直接编辑 `~/.claude/notify-config.json`：
+
+```json
+{ "soundDir": "D:\\my-sounds" }
+```
+
+`-SoundFile` 参数支持两种形式：
+- **文件名**（如 `ding.wav`）→ 从 `notify-config.json` 中配置的目录读取
+- **完整路径**（如 `D:\music\custom.wav`）→ 直接播放
+
+默认目录为 `C:\Windows\Media\`，内置音效：
 
 | 文件 | 听感 |
 |------|------|

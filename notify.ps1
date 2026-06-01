@@ -8,9 +8,22 @@
 Add-Type -AssemblyName System.Windows.Forms
 Add-Type -AssemblyName System.Drawing
 
+$configPath = "$env:USERPROFILE\.claude\notify-config.json"
+$soundDir = "C:\Windows\Media\"
+if (Test-Path $configPath) {
+    $config = Get-Content $configPath -Raw | ConvertFrom-Json
+    if ($config.soundDir -and (Test-Path $config.soundDir)) {
+        $soundDir = $config.soundDir
+    }
+}
+
 if (-not $Silent -and $SoundFile -ne "") {
-    $sp = "C:\Windows\Media\" + $SoundFile
-    if (Test-Path $sp) { (New-Object System.Media.SoundPlayer $sp).Play() }
+    if (Test-Path $SoundFile) {
+        (New-Object System.Media.SoundPlayer $SoundFile).Play()
+    } else {
+        $sp = Join-Path $soundDir $SoundFile
+        if (Test-Path $sp) { (New-Object System.Media.SoundPlayer $sp).Play() }
+    }
 }
 
 Add-Type @"
